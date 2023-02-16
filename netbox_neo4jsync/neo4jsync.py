@@ -16,7 +16,7 @@ class Neo4jSync:
         try:
             self._initNeo4j()
         except Exception as e:
-            raise Exception(e)
+            return
 
 
     def __del__(self):
@@ -25,6 +25,9 @@ class Neo4jSync:
 
 
     def process_data(self, data: Neo4jSyncDataModel):
+        if not self.neo4j_driver:
+            return False
+
         if self.DEBUG:
             inspect(data)
 

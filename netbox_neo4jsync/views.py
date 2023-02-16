@@ -1,31 +1,18 @@
-from netbox.views import generic
-from dcim.models import Device, Site, Cable
+# from netbox.views import generic
+# from dcim.models import Device, Site
 
-import logging
+# import logging
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
-from . import models, tables
+# from . import tables
 
 
 ## Neo4jSyncList Views
+from django.http import HttpResponse
+import datetime
 
-class Neo4jSyncListView(generic.ObjectListView):
-    queryset = Site.objects.all()
-    table = tables.ListOfStuffTable
-    # filterset = filters.RiskFilterSet
-    # filterset_form = forms.RiskFilterForm
-
-class Neo4jSyncList(generic.ObjectView):
-    queryset = Site.objects.all()
-
-# class RiskEditView(generic.ObjectEditView):
-#     queryset = models.Risk.objects.all()
-#     form = forms.RiskForm
-
-# class RiskDeleteView(generic.ObjectDeleteView):
-#     queryset = models.Risk.objects.all()
-
-# class RiskBulkDeleteView(generic.BulkDeleteView):
-#     queryset = models.Risk.objects.all()
-#     table = tables.RiskTable
+def Neo4jSyncListView(request):
+    now = datetime.datetime.now()
+    html = "<html><body>It is now %s.</body></html>" % now
+    return HttpResponse(html)
